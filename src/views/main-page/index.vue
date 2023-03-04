@@ -15,16 +15,26 @@
         <div class="grid-content"></div>
       </el-col>
     </el-row>
-
-    <el-row style="margin-top: 10px">
+    <!-- <el-row style="margin-top: 10px">
       <el-col :span="24">
         <div align="center">
           <img src="../../assets/models_img/home-brain.png" class="main_img"/>
         </div>
       </el-col>
+    </el-row> -->
+    <!-- <span class="demonstration">默认 Hover 指示器触发</span> -->
+     <el-row style="margin-top: 10px">
+      <el-col :span="24">
+        <div align="center" >
+          <el-carousel class="main_img" arrow="always" :interval="2000" height="500px" style="width: ; align-items: center;">
+          <el-carousel-item class="el-carousel__item" v-for="(img,index) in imgList" :key="index">
+            <img v-bind:src="img.url" style="width:100%;height:100%">
+          </el-carousel-item>
+          </el-carousel>
+        </div>
+      </el-col>
     </el-row>
-
-
+    
 
     <h2 style="text-align: center"> AutoML </h2>
 
@@ -121,11 +131,17 @@
 </template>
 
 <script>
+import 'element-ui/lib/theme-chalk/index.css'
+import ElementUI from 'element-ui'
 export default {
   name: 'MainPage',
   data() {
     return {
-      mainPage: ''
+      mainPage: '',
+      imgList:[
+        {url:require('@/assets/models_img/SC-CPPTransformer.png')},
+        {url:require('@/assets/models_img/SD-PepGPT.png')}
+      ]
     }
   },
   methods: {
@@ -137,6 +153,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -157,5 +174,34 @@ export default {
   text-align: justify;
   font-weight: normal;
   line-height: 1.5;
+}
+
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+     background-color: #99a9bf;
+  }
+  
+  .el-carousel__item:nth-child(2n+1) {
+     background-color: #d3dce6;
+  }
+
+  .carousel-img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  
+  .el-carousel__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
